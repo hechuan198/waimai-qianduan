@@ -55,6 +55,15 @@
         form = layui.form;
 
     });
+    // tab控件必须有下面的代码，才可以切换
+    layui.use('element', function () {
+        var element = layui.element;
+
+        //一些事件监听
+        element.on('tab(demo)', function (data) {
+            console.log(data);
+        });
+    });
 
     /*分类-删除*/
     function member_del(obj, id) {
@@ -87,12 +96,12 @@
                     var td2 = $('<td></td>').html('<i class="layui-icon x-show" status=\'true\'>&#xe623;</i>' + list[i].name);
 
                     var td3 = $('<td></td>').html('<input type="text" class="layui-input x-sort " name="sortOrder" value="' + list[i].sortOrder + '">\n' +
-                        '                                <button type="button" data=" '+list[i].id+'" class="layui-btn layui-btn-xs sort" lay-filter="btnTest">修改</button>');
+                        '                                <button type="button" data="'+list[i].id+'" class="layui-btn layui-btn-xs sort" lay-filter="btnTest">修改</button>');
                     var td4 = '';
                     if (list[i].status == 1) {
-                        td4 = $('<td></td>').html('<input type="checkbox" class="'+list[i].id+'" name="switch" lay-text="开启|停用" checked="" lay-skin="switch" lay-filter="switchTest">');
+                        td4 = $('<td id=aaa align="center"></td>').html('<input type="checkbox" class="'+list[i].id+'" name="switch" lay-text="开启|停用" checked="" lay-skin="switch" lay-filter="switchTest">');
                     } else {
-                        td4 = $('<td></td>').html('<input type="checkbox" class="'+list[i].id+'" name="switch" lay-text="开启|停用" lay-skin="switch" lay-filter="switchTest">');
+                        td4 = $('<td id=aaa align="center"></td>').html('<input type="checkbox" class="'+list[i].id+'" name="switch" lay-text="开启|停用" lay-skin="switch" lay-filter="switchTest">');
                     }
                     var td5 = $('<td></td>').html('<button class="layui-btn layui-btn layui-btn-xs"\n' +
                         '                                        onclick="xadmin.open(\'编辑\',\'cate-edit.html?id='+list[i].id+'\',\'400\',\'250\')"><i class="layui-icon">&#xe642;</i>编辑\n' +
@@ -113,6 +122,11 @@
                         var parentId = list[i].parentId;
                         $("tbody tr[cate-id=" + parentId + "]").after(tr)
                     }
+                    layui.use(['form'], function () {
+                        form = layui.form;
+                        form.render();
+                    });
+
                 }
                 // 分类展开收起的分类的逻辑
                 $("tbody.x-cate tr[fid!='0']").hide();
@@ -141,6 +155,7 @@
 
 
     })
+
 
     var cateIds = [];
 

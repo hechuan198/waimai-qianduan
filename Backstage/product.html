@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="./css/font.css">
     <link rel="stylesheet" href="./css/xadmin.css">
     <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script src="./js/ip.js"></script>
     <script src="./lib/layui/layui.js" charset="utf-8"></script>
     <script type="text/javascript" src="./js/xadmin.js"></script>
     <!--[if lt IE 9]>
@@ -323,9 +324,9 @@
                     date = date.data.list;
                     for (var i = 0; i < date.length; i++) {
 
-                        var td = $("<td></td>").html('<img id="productImg" src=\'http://localhost:8080/' + date[i].mainImage + '\' style=\'max-width: 100px;max-height: 100px;\'>');
+                        var td = $("<td></td>").html('<img id="productImg" src=\''+ip+'/' + date[i].mainImage + '\' style=\'max-width: 100px;max-height: 100px;\'>');
                         var td2 = $("<td></td>").text(date[i].name);
-                        var td3 = $("<td></td>").text(date[i].categoryId);
+                        var td3 = $("<td></td>").text(date[i].category);
                         var td5 = $("<td></td>").text(date[i].detail);
                         var td6 = $("<td></td>").text(date[i].price);
                         if (date[i].status == 1) {
@@ -343,7 +344,10 @@
 
                         var tr = $("<tr></tr>").append(td, td2, td3, td5, td6, td7, tdbtn);
                         $('tbody').append(tr);
-
+                        layui.use(['form'], function () {
+                            form = layui.form;
+                            form.render();
+                        });
 
                         // console.log(total);
 

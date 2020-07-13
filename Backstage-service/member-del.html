@@ -12,7 +12,9 @@
       <script type="text/javascript" src="js/jquery.min.js"></script>
       <script type="text/javascript" src="./lib/layui/layui.js" charset="utf-8"></script>
     <script type="text/javascript" src="./js/xadmin.js"></script>
-    <!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
+      <script src="./js/ip.js"></script>
+
+      <!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
     <!--[if lt IE 9]>
       <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
       <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
@@ -130,7 +132,7 @@
                       status: 1,
                       id: id
                   },function () {
-                  $(obj).parents("td").prev().html('<span class="layui-btn layui-btn-mini" onclick="member_del(this,'+id+')" >\n' +
+                  $(obj).parents("td").prev().html('<span class="layui-btn layui-btn-mini" onclick="member_frozen(this,\''+id+'\')" >\n' +
                           '                                                  冻结\n' +
                           '                                              </span>');
                       layer.msg('已恢复!',{icon:1,time:1000});
@@ -225,9 +227,9 @@
                       var td2 = $("<td></td>").text(date[i].email);
                       var td3 = $("<td></td>").text(date[i].phone);
                       var td4 = $("<td></td>").text(date[i].createTime);
-                      console.log(date[i].status);
+                      console.log(date[i].id);
                       if (date[i].status == 1) {
-                          var td5 = $("<td></td>").html('<span class="layui-btn layui-btn-mini" onclick="member_frozen(this,'+date[i].id+')"  >\n' +
+                          var td5 = $("<td></td>").html('<span class="layui-btn layui-btn-mini" onclick="member_frozen(this,\''+date[i].id+'\')"  >\n' +
                               '                                                  冻结\n' +
                               '                                              </span>');
                       } else {
@@ -235,10 +237,10 @@
                               '                                                  已冻结\n' +
                               '                                              </span>')
                       }
-                      var td6 = $("<td></td>").html('<a title="恢复" onclick="member_recovery(this,'+date[i].id+')" href="javascript:;">\n' +
+                      var td6 = $("<td></td>").html('<a title="恢复" onclick="member_recovery(this,\''+date[i].id+'\')" href="javascript:;">\n' +
                           '                                  <i class="layui-icon">&#xe669;</i>\n' +
                           '                                </a>\n' +
-                          '                                <a title="删除" onclick="member_del(this,'+date[i].id+')" href="javascript:;">\n' +
+                          '                                <a title="删除" onclick="member_del(this,\''+date[i].id+'\')" href="javascript:;">\n' +
                           '                                  <i class="layui-icon">&#xe640;</i>\n' +
                           '                                </a>');
 

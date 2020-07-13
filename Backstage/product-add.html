@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="./css/font.css">
     <link rel="stylesheet" href="./css/xadmin.css">
     <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script src="./js/ip.js"></script>
     <script type="text/javascript" src="./lib/layui/layui.js" charset="utf-8"></script>
     <script type="text/javascript" src="./js/xadmin.js"></script>
     <!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
@@ -80,7 +81,6 @@
         //监听提交
         form.on('submit(add)',
             function (data) {
-                console.log(11111111111111111 + $('.layui-form').serialize());
                 $.post(
                         "http://localhost:8080/product/addProduct",
                         {
@@ -118,7 +118,7 @@ layui.use('upload', function () {
     //执行实例
     var uploadInst = upload.render({
         elem: '#mainImage' //绑定元素
-        , url: 'http://localhost:8080/product/upload' //上传接口
+        , url: ip+'/product/upload' //上传接口
         , accept: 'images'
         , done: function (res) {
             console.log(res);

@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="./css/login.css">
 	  <link rel="stylesheet" href="./css/xadmin.css">
     <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <script src="./js/ip.js"></script>
     <script src="./lib/layui/layui.js" charset="utf-8"></script>
     <!--[if lt IE 9]>
       <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
@@ -30,7 +31,7 @@
             <hr class="hr15">
             <input type="hidden" class="form-control" lay-verify="required" id="role" name="role" value="1" >
             <input type="text" class="form-control" lay-verify="required" id="yzm" name="yzm" placeholder="验证码">
-            <img id="yzm_img" align="right" style="cursor:pointer;width: 100px;height: 36px;margin: 5px 0 0 5px;border-radius: 3px;" title="点击刷新验证码" src="http://localhost:8080/user/getVerifiCode"/>
+            <img id="yzm_img" align="right" style="cursor:pointer;width: 100px;height: 36px;margin: 5px 0 0 5px;border-radius: 3px;" title="点击刷新验证码"/>
             <hr class="hr15">
             <input id="loginButton" value="登录" lay-submit lay-filter="login" style="width:100%;" type="button">
             <hr class="hr20" >
@@ -58,7 +59,7 @@
             $("#loginButton").click(function () {
                 $.ajax({
                     type:"post",
-                    url: "http://localhost:8080/user/login",
+                    url: ip+"/user/login",
                     data:$("#formLogin").serialize(),
                     xhrFields: {
                         withCredentials: true
@@ -74,11 +75,12 @@
                     }
                 })
             })
+            $("#yzm_img").prop('src',ip+'/user/getVerifiCode?a='+new Date().getTime());
 
 
             $("#yzm_img").click(function () {
                 // alert(1)
-                $("#yzm_img").prop('src','http://localhost:8080/user/getVerifiCode?a='+new Date().getTime());
+                $("#yzm_img").prop('src',ip+'/user/getVerifiCode?a='+new Date().getTime());
 
             })
         })

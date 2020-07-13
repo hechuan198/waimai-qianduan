@@ -12,6 +12,8 @@
     <link rel="stylesheet" href="./css/font.css">
     <link rel="stylesheet" href="./css/xadmin.css">
     <script src="./js/jquery.min.js"></script>
+    <script src="./js/ip.js"></script>
+
 </head>
 <body>
 <div class="layui-fluid">
@@ -61,7 +63,7 @@
     $(function () {
         $.ajax({
             type: "post",
-            url: "http://localhost:8080/product/queryHotProductList",
+            url: ip+"/product/queryHotProductList",
             data: "",
             success: function (data) {
                 console.log(data);
